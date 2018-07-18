@@ -66,7 +66,7 @@ class Bot(commands.Bot):
         await self.change_presence(status=discord.Status.online, activity=game)
 
     def getcolour(self):
-        colours = ["5C6BC0", "AB47BC", "EF5350", "FFA726", "FFEE58", "66BB6A", "5BCEFA", "F5A9B8", "FFFFFF", "F5A9B8", "5BCEFA"]
+        colours = ["EE1515", "222224", "F0F0F0", "F00000", "F0F0F0"]
         self.currentColour += 1
         if self.currentColour ==  len(colours):
             self.currentColour = 0
