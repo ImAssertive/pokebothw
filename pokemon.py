@@ -168,7 +168,7 @@ class pokeCog:
                             [":rotating_light: | Please enter the map coordanites of the "+stoptype+".", "coord", "", "map coordinates"],
                             [":rotating_light: | Please enter any additional notes for this "+stoptype+".", "notes", "", "notes"]]
             for option in stoptextlist:
-                await ctx.channel.send(option[0])
+                entryrequest = await ctx.channel.send(option[0])
                 def check(msg):
                     return ctx.channel.id == msg.channel.id and msg.author.id == ctx.author.id
                 try:
@@ -182,6 +182,7 @@ class pokeCog:
                         option[2] = msg.content
                     else:
                         option[2] = msg.content.lower()
+                    await entryrequest.delete()
             if not timeout:
                 embed = discord.Embed(description="Please type confirm to confirm adding to database or cancel to discard.", colour=self.bot.getcolour())
                 embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg", name="Here is the information for "+stoptype+": "+stoptextlist[0][2]+".")
