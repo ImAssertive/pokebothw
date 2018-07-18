@@ -37,7 +37,8 @@ class pokeCog:
                             [":rotating_light: | Please enter the url of the screenshot of the "+stoptype+".", "screenshoturl", "", "screenshot url"],
                             [":rotating_light: | Please enter the url of the map location of the "+stoptype+".", "mapurl", "", "map location url"],
                             [":rotating_light: | Please enter the url of the photo of the "+stoptype+".", "imageurl", "", "photo url"],
-                            [":rotating_light: | Please enter the map coordanites of the "+stoptype+".", "coord", "", "map coordinates"]]
+                            [":rotating_light: | Please enter the map coordanites of the "+stoptype+".", "coord", "", "map coordinates"],
+                            [":rotating_light: | Please enter any additional notes for this "+stoptype+".", "notes", "", "notes"]]
             for option in stoptextlist:
                 await ctx.channel.send(option[0])
                 def check(msg):
@@ -57,6 +58,7 @@ class pokeCog:
                 embed.add_field(name=stoptype+" map location url:", value=stoptextlist[2][2], inline=False)
                 embed.add_field(name=stoptype+" photo url:", value=stoptextlist[3][2], inline=False)
                 embed.add_field(name=stoptype+" map coordanites", value=stoptextlist[4][2], inline=False)
+                embed.add_field(name=stoptype+" notes", value=stoptextlist[5][2], inline=False)
                 embed.set_footer(text="bot made by Zootopia#0001")
                 await ctx.channel.send(embed=embed)
                 def check(msg):
@@ -72,8 +74,8 @@ class pokeCog:
                     elif msg.content.lower() == "confirm":
                         connection = await self.bot.db.acquire()
                         async with connection.transaction():
-                            query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
-                            await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
+                            query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type, notes) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
+                            await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype, stoptextlist[5][2])
                         await self.bot.db.release(connection)
                         await ctx.channel.send(":white_check_mark: | "+stoptype.title()+" added!")
 

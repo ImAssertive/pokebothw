@@ -18,7 +18,8 @@ async def run():
     mapurl text,
     imageurl text,
     coord text,
-    type text);
+    type text,
+    notes text);
     
     CREATE TABLE IF NOT EXISTS Pokemon(pokeid serial PRIMARY KEY,
     pokedex bigint UNIQUE,
