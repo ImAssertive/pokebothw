@@ -53,6 +53,7 @@ class pokeCog:
 
     async def infoMainMenuPage2(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
+            print(result["screenshoturl"])
             embed.set_image(url=result["screenshoturl"])
             embed.set_footer(text="Page (2/4)")
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Screenshot of: "+result["name"])
