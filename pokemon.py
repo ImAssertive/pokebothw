@@ -68,14 +68,14 @@ class pokeCog:
                     await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
                 else:
                     if msg.content.lower() == "cancel":
-                        await ctx.channel.send(":white_check_mark: | "+stoptype+" discarded!")
+                        await ctx.channel.send(":white_check_mark: | "+stoptype.title()+" discarded!")
                     elif msg.content.lower() == "confirm":
                         connection = await self.bot.db.acquire()
                         async with connection.transaction():
                             query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
                             await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
                         await self.bot.db.release(connection)
-                        await ctx.channel.send(":white_check_mark: | **"+stoptype.title()+"** added!")
+                        await ctx.channel.send(":white_check_mark: | "+stoptype.title()+" added!")
 
 
 def setup(bot):
