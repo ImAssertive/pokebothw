@@ -44,7 +44,7 @@ class pokeCog:
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenuPage2(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    print("wew")
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
                     await menu.delete()
