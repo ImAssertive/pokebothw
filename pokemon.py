@@ -33,14 +33,14 @@ class pokeCog:
             try:
                 reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
-                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenuPage2(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
@@ -63,18 +63,18 @@ class pokeCog:
             try:
                 reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
-                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage3(ctx, menu, stopname)
+                    await self.infoMainMenuPage3(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenuPage4(ctx, menu, stopname)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
                     await menu.delete()
@@ -93,18 +93,18 @@ class pokeCog:
             try:
                 reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
-                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage2(ctx, menu, stopname)
+                    await self.infoMainMenuPage2(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage4(ctx, menu, stopname)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenuPage4(ctx, menu, stopname)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
                     await menu.delete()
@@ -123,18 +123,18 @@ class pokeCog:
             try:
                 reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
-                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenu(ctx, menu, stopname)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage3(ctx, menu, stopname)
+                    await self.infoMainMenuPage3(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage4(ctx, menu, stopname)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenuPage4(ctx, menu, stopname)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
                     await menu.delete()
