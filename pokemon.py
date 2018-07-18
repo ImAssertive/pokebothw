@@ -27,10 +27,10 @@ class pokeCog:
         except asyncio.TimeoutError:
             await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
         else:
-            if msg.content.lower == "gym":
+            if msg.content.lower() == "gym":
                 stoptype = "gym"
                 print("made it to gym")
-            elif msg.content == "pokestop" or msg.content == "stop":
+            elif msg.content.lower() == "pokestop" or msg.content.lower() == "stop":
                 stoptype = "pokestop"
                 print("made it to stop")
         if stoptype != "wew":
