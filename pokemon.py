@@ -37,7 +37,7 @@ class pokeCog:
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
-                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}:
+                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
                     await self.infoMainMenu(ctx, menu, role)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenu(ctx, menu, role)

@@ -10,7 +10,7 @@ class adminCog:
     async def exit(self, ctx):
         thanos = random.randint(1,5)
         if thanos == 1:
-            await ctx.channel.send("Mrs Assertive I dont feel so good...")
+            await ctx.channel.send("Assertive I dont feel so good...")
         if thanos == 2:
             await ctx.channel.send("Why...")
         if thanos == 3:
