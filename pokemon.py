@@ -50,8 +50,8 @@ class pokeCog:
                 else:
                     option[2] = msg.content
             if not timeout:
-                embed = discord.Embed(description="please type confirm to confirm adding to database or cancel to discard", colour=self.bot.getcolour())
-                embed.set_author(icon_url=ctx.bot.user.avatar_url, name="Here is the information for "+stoptype+": '"+stoptextlist[0][2]+"'.")
+                embed = discord.Embed(description="Please type confirm to confirm adding to database or cancel to discard.", colour=self.bot.getcolour())
+                embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg", name="Here is the information for "+stoptype+": "+stoptextlist[0][2]+".")
                 embed.add_field(name=stoptype+" name:", value=stoptextlist[0][2], inline=False)
                 embed.add_field(name=stoptype+" screenshot url:", value=stoptextlist[1][2], inline=False)
                 embed.add_field(name=stoptype+" map location url:", value=stoptextlist[2][2], inline=False)
@@ -59,8 +59,6 @@ class pokeCog:
                 embed.add_field(name=stoptype+" map coordanites", value=stoptextlist[4][2], inline=False)
                 embed.set_footer(text="bot made by Zootopia#0001")
                 await ctx.channel.send(embed=embed)
-                await ctx.channel.send(":rotating_light: | Please enter the type of the stop.")
-
                 def check(msg):
                     options = ["cancel", "confirm"]
                     return ctx.channel.id == msg.channel.id and msg.author.id == ctx.author.id and msg.content.lower() in options
@@ -77,7 +75,7 @@ class pokeCog:
                             query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
                             await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
                         await self.bot.db.release(connection)
-                        await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
+                        await ctx.channel.send(":white_check_mark: | **"+stoptype.title()+"** added!")
 
 
 def setup(bot):
