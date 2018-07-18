@@ -21,10 +21,10 @@ class pokeCog:
 
     async def infoMainMenu(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
-            embed.add_field(name=result["type"]+" name:", value=result["name"], inline=False)
-            embed.add_field(name=result["type"]+" notes:", value=result["notes"], inline=False)
-            embed.add_field(name=result["type"]+" coordinates:", value=result["coord"], inline=False)
-            embed.set_footer(text="Page (1/4")
+            embed.add_field(name=result["type"].title()+" name:", value=result["name"])
+            embed.add_field(name=result["type"].title()+" coordinates:", value=result["coord"])
+            embed.add_field(name=result["type"].title()+" notes:", value=result["notes"], inline=False)
+            embed.set_footer(text="Page (1/4)")
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Here is the information for stop: "+result["name"])
             await menu.edit(embed=embed)
             options = useful.getInfoMenuEmoji()
