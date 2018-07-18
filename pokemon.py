@@ -51,20 +51,35 @@ class pokeCog:
                     option[2] = msg.content
                     await ctx.channel.send(":white_check_mark: | **"+option[3]+"** recorded.")
             if not timeout:
-                embed = discord.Embed(colour=self.bot.getcolour())
-                embed.set_author(icon_url=ctx.bot.user.avatar_url, name="Here is the information for "+stoptype+" '"+stoptextlist[0][2]+"'.")
+                embed = discord.Embed(description="please type confirm to confirm adding to database or cancel to discard", colour=self.bot.getcolour())
+                embed.set_author(icon_url=ctx.bot.user.avatar_url, name="Here is the information for "+stoptype+": '"+stoptextlist[0][2]+"'.")
                 embed.add_field(name=stoptype+" name:", value=stoptextlist[0][2], inline=False)
                 embed.add_field(name=stoptype+" screenshot url:", value=stoptextlist[1][2], inline=False)
                 embed.add_field(name=stoptype+" map location url:", value=stoptextlist[2][2], inline=False)
                 embed.add_field(name=stoptype+" photo url:", value=stoptextlist[3][2], inline=False)
                 embed.add_field(name=stoptype+" map coordanites", value=stoptextlist[4][2], inline=False)
+                embed.set_footer(text="bot made by Zootopia#0001")
                 await ctx.channel.send(embed=embed)
-                # connection = await self.bot.db.acquire()
-                # async with connection.transaction():
-                #     query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
-                #     await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
-                # await self.bot.db.release(connection)
-                # await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
+                await
+                ctx.channel.send(":rotating_light: | Please enter the type of the stop.")
+
+                def check(msg):
+                    options = ["cancel", "confirm"]
+                    return ctx.channel.id == msg.channel.id and msg.author.id == ctx.author.id and msg.content.lower() in options
+                try:
+                    msg = await self.bot.wait_for('message', check=check, timeout=60.0)
+                except asyncio.TimeoutError:
+                    await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
+                else:
+                    if msg.content.lower() == "cancel":
+                        await ctx.channel.send(":white_check_mark: | "+stoptype+" discarded!")
+                    elif msg.content.lower() == "confirm":
+                        connection = await self.bot.db.acquire()
+                            async with connection.transaction():
+                                query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
+                                await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
+                            await self.bot.db.release(connection)
+                            await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
 
 
 def setup(bot):
