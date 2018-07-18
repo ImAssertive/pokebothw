@@ -32,6 +32,7 @@ class pokeCog:
             elif msg.content.lower() == "pokestop" or msg.content.lower() == "stop":
                 stoptype = "pokestop"
         if stoptype != "wew":
+            timeout = False
             stoptextlist = [[":rotating_light: | Please enter the name of the "+stoptype+".", "name", "", "pokestop name"],
                             [":rotating_light: | Please enter the url of the screenshot of the "+stoptype+".", "screenshoturl", "", "screenshot url"],
                             [":rotating_light: | Please enter the url of the map location of the "+stoptype+".", "mapurl", "", "map location url"],
