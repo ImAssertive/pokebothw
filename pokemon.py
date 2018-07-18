@@ -18,7 +18,7 @@ class pokeCog:
     @checks.justme()
     async def addstop(self, ctx):
         stoptype = "wew"
-        await ctx.channel.send(":rotating_light: | Please enter the name of the pokestop.")
+        await ctx.channel.send(":rotating_light: | Please enter the type of the stop.")
         def check(msg):
             options = ["gym", "pokestop", "stop"]
             return ctx.channel.id == msg.channel.id and msg.author.id == ctx.author.id and msg.content.lower() in options
@@ -29,8 +29,10 @@ class pokeCog:
         else:
             if msg.content.lower == "gym":
                 stoptype = "gym"
+                print("made it to gym")
             elif msg.content == "pokestop" or msg.content == "stop":
                 stoptype = "pokestop"
+                print("made it to stop")
         if stoptype != "wew":
             print("do the rest of the program")
         else:

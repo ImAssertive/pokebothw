@@ -26,7 +26,7 @@ async def run():
     description text,
     screenshoturl text);''')
     bot = Bot(description=description, db=db)
-    initial_extensions = ['pokemon', 'misc']
+    initial_extensions = ['pokemon', 'misc', 'admin']
     if __name__ == '__main__':
         for extension in initial_extensions:
             try:
