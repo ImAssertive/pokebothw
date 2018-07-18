@@ -21,6 +21,14 @@ async def run():
     type text,
     notes text);
     
+    CREATE TABLE IF NOT EXISTS Raids(raidid serial PRIMARY KEY,
+    name text,
+    imageurl text,
+    screenshoturl text,
+    maxcp integer,
+    maxcpboosted integer,
+    
+    
     CREATE TABLE IF NOT EXISTS Pokemon(pokeid serial PRIMARY KEY,
     pokedex bigint UNIQUE,
     name text,
