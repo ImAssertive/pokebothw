@@ -36,8 +36,7 @@ class pokeCog:
                 ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editrole command to restart the process.")
                 await menu.delete()
             else:
-                await
-                menu.remove_reaction(reaction.emoji, user)
+                await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "⏮️":
                     await self.infoMainMenu(ctx, menu, role)
                 elif str(reaction.emoji) == "◀️":
