@@ -12,7 +12,45 @@ class pokeCog:
         if not result:
             await ctx.channel.send(":no_entry: | No Pokestop with name:** "+stopname+"** found.")
         else:
-            await ctx.channel.send("wew")
+            embed = discord.Embed(title="Menu Loading...", description="Please stand by.", colour=self.bot.getcolour())
+            menu = await ctx.channel.send(embed = embed)
+            emojis = useful.getInfoMenuEmoji()
+            for emoji in range(0,len(emojis)):
+                await menu.add_reaction(emojis[emoji])
+            await self.infoMainMenu(ctx, menu, role)
+
+    async def infoMainMenu(self, ctx, menu, role):
+            embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
+            embed.add_field(name=result["type"]+" name:", value=result["name"], inline=False)
+            embed.add_field(name=result["type"]+" notes:", value=result["notes"], inline=False)
+            embed.add_field(name=result["type"]+" coordinates:", value=result["coord"], inline=False)
+            embed.set_footer(name="Page (1/4")
+            embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Here is the information for stop: "+result["name"])
+            await menu.edit(embed=embed)
+            options = useful.getInfoMenuEmoji()
+            def roles_emojis_main_menu(reaction, user):
+                return (user == ctx.author) and (str(reaction.emoji) in options)
+            try:
+                reaction, user = await self.bot.wait_for('reaction_add', check=roles_emojis_main_menu, timeout=60.0)
+            except asyncio.TimeoutError:
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editrole command to restart the process.")
+                await menu.delete()
+            else:
+                await
+                menu.remove_reaction(reaction.emoji, user)
+                if str(reaction.emoji) == "⏮️":
+                    await self.infoMainMenu(ctx, menu, role)
+                elif str(reaction.emoji) == "◀️":
+                    await self.infoMainMenu(ctx, menu, role)
+                # elif str(reaction.emoji) == "▶️":
+                #     print("wew")
+                # elif str(reaction.emoji) == "⏭️":
+                #     print("wew")
+                elif str(reaction.emoji) == "❌":
+                    closed = await ctx.channel.send(":white_check_mark: | Info closed!")
+                    await menu.delete()
+                    await asyncio.sleep(1)
+                    await closed.delete()
 
     @commands.command()
     @checks.justme()

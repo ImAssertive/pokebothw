@@ -17,3 +17,7 @@ def getMenuEmoji(noOfOptions):
         toReturn.append(emojis[i])
     toReturn.append("❌")
     return toReturn
+
+def getInfoMenuEmoji():
+    emojis = ["⏮️","◀️","❌","▶️","⏭️"]
+    return emojis
