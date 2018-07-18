@@ -51,12 +51,19 @@ class pokeCog:
                     option[2] = msg.content
                     await ctx.channel.send(":white_check_mark: | **"+option[3]+"** recorded.")
             if not timeout:
-                connection = await self.bot.db.acquire()
-                async with connection.transaction():
-                    query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
-                    await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
-                await self.bot.db.release(connection)
-                await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
+                embed = discord.Embed(title='Here is the information for '+stoptype+' '+' '+stoptextlist[0][2]+'.')
+                embed.add_field(name=stoptype+" name:", value=stoptextlist[0][2], inline=False)
+                embed.add_field(name=stoptype+" screenshot url:", value=stoplisttext[1][2], inline=False)
+                embed.add_field(name=stoptype+" map location url:", value=stoplisttext[2][2], inline=False)
+                embed.add_field(name=stoptype+" photo url:", value=stoplisttext[3][2], inline=False)
+                embed.add_field(name=stoptype+" map coordanites", value=stoplisttext[4][2], inline=False)
+                await ctx.channel.send(embed=embed)
+                # connection = await self.bot.db.acquire()
+                # async with connection.transaction():
+                #     query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
+                #     await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
+                # await self.bot.db.release(connection)
+                # await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
 
 
 def setup(bot):
