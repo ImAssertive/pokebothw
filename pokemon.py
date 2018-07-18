@@ -41,10 +41,100 @@ class pokeCog:
                     await self.infoMainMenu(ctx, menu, stopname)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenu(ctx, menu, stopname)
-                # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
-                #     print("wew")
-                # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                #     print("wew")
+                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
+                     await self.infoMainMenuPage2(ctx, menu, result)
+                elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                     print("wew")
+                elif str(reaction.emoji) == "❌":
+                    closed = await ctx.channel.send(":white_check_mark: | Info closed!")
+                    await menu.delete()
+                    await asyncio.sleep(1)
+                    await closed.delete()
+
+    async def infoMainMenuPage2(self, ctx, menu, result):
+            embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
+            embed.set_image("https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_footer(text="Page (2/4)")
+            embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Screenshot of: "+result["name"])
+            await menu.edit(embed=embed)
+            options = useful.getInfoMenuEmoji()
+            def info_emojis_main_menu(reaction, user):
+                return (user == ctx.author) and (str(reaction.emoji) in options)
+            try:
+                reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
+            except asyncio.TimeoutError:
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                await menu.delete()
+            else:
+                await menu.remove_reaction(reaction.emoji, user)
+                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                    await self.infoMainMenu(ctx, menu, stopname)
+                elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
+                    await self.infoMainMenu(ctx, menu, stopname)
+                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
+                     await self.infoMainMenuPage3(ctx, menu, stopname)
+                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                     await self.infoMainMenuPage4(ctx, menu, stopname)
+                elif str(reaction.emoji) == "❌":
+                    closed = await ctx.channel.send(":white_check_mark: | Info closed!")
+                    await menu.delete()
+                    await asyncio.sleep(1)
+                    await closed.delete()
+
+    async def infoMainMenuPage3(self, ctx, menu, result):
+            embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
+            embed.set_image("https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_footer(text="Page (3/4)")
+            embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Map location of: "+result["name"])
+            await menu.edit(embed=embed)
+            options = useful.getInfoMenuEmoji()
+            def info_emojis_main_menu(reaction, user):
+                return (user == ctx.author) and (str(reaction.emoji) in options)
+            try:
+                reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
+            except asyncio.TimeoutError:
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                await menu.delete()
+            else:
+                await menu.remove_reaction(reaction.emoji, user)
+                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                    await self.infoMainMenu(ctx, menu, stopname)
+                elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
+                    await self.infoMainMenuPage2(ctx, menu, stopname)
+                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
+                     await self.infoMainMenuPage4(ctx, menu, stopname)
+                elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                     await self.infoMainMenuPage4(ctx, menu, stopname)
+                elif str(reaction.emoji) == "❌":
+                    closed = await ctx.channel.send(":white_check_mark: | Info closed!")
+                    await menu.delete()
+                    await asyncio.sleep(1)
+                    await closed.delete()
+
+    async def infoMainMenuPage4(self, ctx, menu, result):
+            embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
+            embed.set_image("https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_footer(text="Page (4/4)")
+            embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Picture of stop: "+result["name"])
+            await menu.edit(embed=embed)
+            options = useful.getInfoMenuEmoji()
+            def info_emojis_main_menu(reaction, user):
+                return (user == ctx.author) and (str(reaction.emoji) in options)
+            try:
+                reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
+            except asyncio.TimeoutError:
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
+                await menu.delete()
+            else:
+                await menu.remove_reaction(reaction.emoji, user)
+                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                    await self.infoMainMenu(ctx, menu, stopname)
+                elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
+                    await self.infoMainMenuPage3(ctx, menu, stopname)
+                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
+                     await self.infoMainMenuPage4(ctx, menu, stopname)
+                elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
+                     await self.infoMainMenuPage4(ctx, menu, stopname)
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
                     await menu.delete()
