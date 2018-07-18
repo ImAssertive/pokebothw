@@ -19,5 +19,5 @@ def getMenuEmoji(noOfOptions):
     return toReturn
 
 def getInfoMenuEmoji():
-    emojis = ["⏮️","◀️","❌","▶️","⏭️"]
+    emojis = ["\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}","\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}","❌","\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}","\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}"]
     return emojis

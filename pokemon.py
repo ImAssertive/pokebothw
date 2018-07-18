@@ -28,22 +28,22 @@ class pokeCog:
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Here is the information for stop: "+result["name"])
             await menu.edit(embed=embed)
             options = useful.getInfoMenuEmoji()
-            def roles_emojis_main_menu(reaction, user):
+            def info_emojis_main_menu(reaction, user):
                 return (user == ctx.author) and (str(reaction.emoji) in options)
             try:
-                reaction, user = await self.bot.wait_for('reaction_add', check=roles_emojis_main_menu, timeout=60.0)
+                reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
                 ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editrole command to restart the process.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
-                if str(reaction.emoji) == "⏮️":
+                if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}:
                     await self.infoMainMenu(ctx, menu, role)
-                elif str(reaction.emoji) == "◀️":
+                elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenu(ctx, menu, role)
-                # elif str(reaction.emoji) == "▶️":
+                # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
                 #     print("wew")
-                # elif str(reaction.emoji) == "⏭️":
+                # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
                 #     print("wew")
                 elif str(reaction.emoji) == "❌":
                     closed = await ctx.channel.send(":white_check_mark: | Info closed!")
