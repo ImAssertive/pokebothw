@@ -17,9 +17,9 @@ class pokeCog:
             emojis = useful.getInfoMenuEmoji()
             for emoji in range(0,len(emojis)):
                 await menu.add_reaction(emojis[emoji])
-            await self.infoMainMenu(ctx, menu, role)
+            await self.infoMainMenu(ctx, menu, stopname)
 
-    async def infoMainMenu(self, ctx, menu, role):
+    async def infoMainMenu(self, ctx, menu, stopname):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
             embed.add_field(name=result["type"]+" name:", value=result["name"], inline=False)
             embed.add_field(name=result["type"]+" notes:", value=result["notes"], inline=False)
@@ -33,14 +33,14 @@ class pokeCog:
             try:
                 reaction, user = await self.bot.wait_for('reaction_add', check=info_emojis_main_menu, timeout=60.0)
             except asyncio.TimeoutError:
-                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editrole command to restart the process.")
+                ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command menu has closed due to inactivity. Please reuse the editstopname command to restart the process.")
                 await menu.delete()
             else:
                 await menu.remove_reaction(reaction.emoji, user)
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
-                    await self.infoMainMenu(ctx, menu, role)
+                    await self.infoMainMenu(ctx, menu, stopname)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenu(ctx, menu, role)
+                    await self.infoMainMenu(ctx, menu, stopname)
                 # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
                 #     print("wew")
                 # elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
@@ -86,7 +86,7 @@ class pokeCog:
                     timeout = True
                     await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
                 else:
-                    option[2] = msg.content
+                    option[2] = msg.content.lower()
             if not timeout:
                 embed = discord.Embed(description="Please type confirm to confirm adding to database or cancel to discard.", colour=self.bot.getcolour())
                 embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg", name="Here is the information for "+stoptype+": "+stoptextlist[0][2]+".")
