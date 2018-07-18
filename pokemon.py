@@ -17,9 +17,9 @@ class pokeCog:
             emojis = useful.getInfoMenuEmoji()
             for emoji in range(0,len(emojis)):
                 await menu.add_reaction(emojis[emoji])
-            await self.infoMainMenu(ctx, menu, stopname)
+            await self.infoMainMenu(ctx, menu, result)
 
-    async def infoMainMenu(self, ctx, menu, stopname):
+    async def infoMainMenu(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
             embed.add_field(name=result["type"]+" name:", value=result["name"], inline=False)
             embed.add_field(name=result["type"]+" notes:", value=result["notes"], inline=False)
