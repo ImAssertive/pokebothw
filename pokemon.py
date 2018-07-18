@@ -53,7 +53,7 @@ class pokeCog:
 
     async def infoMainMenuPage2(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
-            embed.set_image(url="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_image(url=result["screenshoturl"])
             embed.set_footer(text="Page (2/4)")
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Screenshot of: "+result["name"])
             await menu.edit(embed=embed)
@@ -83,7 +83,7 @@ class pokeCog:
 
     async def infoMainMenuPage3(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
-            embed.set_image(url="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_image(url=result["mapurl"])
             embed.set_footer(text="Page (3/4)")
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Map location of: "+result["name"])
             await menu.edit(embed=embed)
@@ -113,7 +113,7 @@ class pokeCog:
 
     async def infoMainMenuPage4(self, ctx, menu, result):
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
-            embed.set_image(url="https://vignette.wikia.nocookie.net/project-pokemon/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/480?cb=20170330235552")
+            embed.set_image(url=result["imageurl"])
             embed.set_footer(text="Page (4/4)")
             embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg",name="Picture of stop: "+result["name"])
             await menu.edit(embed=embed)
