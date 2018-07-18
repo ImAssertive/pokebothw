@@ -40,7 +40,7 @@ class pokeCog:
                 if str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
                     await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenu(ctx, menu, result)
+                    await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenuPage2(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
@@ -133,7 +133,7 @@ class pokeCog:
                 elif str(reaction.emoji) == "\N{BLACK LEFT-POINTING DOUBLE TRIANGLE}":
                     await self.infoMainMenuPage3(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE}":
-                    await self.infoMainMenuPage4(ctx, menu, result)
+                    await self.infoMainMenu(ctx, menu, result)
                 elif str(reaction.emoji) == "\N{BLACK RIGHT-POINTING DOUBLE TRIANGLE WITH VERTICAL BAR}":
                     await self.infoMainMenuPage4(ctx, menu, result)
                 elif str(reaction.emoji) == "❌":
@@ -177,7 +177,11 @@ class pokeCog:
                     timeout = True
                     await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
                 else:
-                    option[2] = msg.content.lower()
+                    if "://" in msg.content:
+                        print("wew")
+                        option[2] = msg.content
+                    else:
+                        option[2] = msg.content.lower()
             if not timeout:
                 embed = discord.Embed(description="Please type confirm to confirm adding to database or cancel to discard.", colour=self.bot.getcolour())
                 embed.set_author(icon_url="https://i.imgur.com/eXKzHVr.jpg", name="Here is the information for "+stoptype+": "+stoptextlist[0][2]+".")
