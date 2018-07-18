@@ -53,10 +53,10 @@ class pokeCog:
             if not timeout:
                 embed = discord.Embed(title='Here is the information for '+stoptype+' '+' '+stoptextlist[0][2]+'.', colour=self.bot.getcolour())
                 embed.add_field(name=stoptype+" name:", value=stoptextlist[0][2], inline=False)
-                embed.add_field(name=stoptype+" screenshot url:", value=stoplisttext[1][2], inline=False)
-                embed.add_field(name=stoptype+" map location url:", value=stoplisttext[2][2], inline=False)
-                embed.add_field(name=stoptype+" photo url:", value=stoplisttext[3][2], inline=False)
-                embed.add_field(name=stoptype+" map coordanites", value=stoplisttext[4][2], inline=False)
+                embed.add_field(name=stoptype+" screenshot url:", value=stoptextlist[1][2], inline=False)
+                embed.add_field(name=stoptype+" map location url:", value=stoptextlist[2][2], inline=False)
+                embed.add_field(name=stoptype+" photo url:", value=stoptextlist[3][2], inline=False)
+                embed.add_field(name=stoptype+" map coordanites", value=stoptextlist[4][2], inline=False)
                 await ctx.channel.send(embed=embed)
                 # connection = await self.bot.db.acquire()
                 # async with connection.transaction():
