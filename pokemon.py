@@ -73,11 +73,11 @@ class pokeCog:
                         await ctx.channel.send(":white_check_mark: | "+stoptype+" discarded!")
                     elif msg.content.lower() == "confirm":
                         connection = await self.bot.db.acquire()
-                            async with connection.transaction():
-                                query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
-                                await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
-                            await self.bot.db.release(connection)
-                            await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
+                        async with connection.transaction():
+                            query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
+                            await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
+                        await self.bot.db.release(connection)
+                        await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
 
 
 def setup(bot):
