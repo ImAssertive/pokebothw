@@ -12,7 +12,7 @@ async def run():
     await db.execute('''CREATE TABLE IF NOT EXISTS Users(userID bigint PRIMARY KEY,
     banned boolean DEFAULT false);
     
-    CREATE TABLE IF NOT EXISTS Pokestops(stopID bigint PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS Pokestops(stopID serial PRIMARY KEY,
     name text,
     screenshoturl text,
     mapurl text,
@@ -20,7 +20,8 @@ async def run():
     coord text,
     type text);
     
-    CREATE TABLE IF NOT EXISTS Pokemon(pokedex bigint PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS Pokemon(pokeid serial PRIMARY KEY,
+    pokedex bigint UNIQUE,
     name text,
     imageurl text,
     description text,

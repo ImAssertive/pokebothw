@@ -29,22 +29,33 @@ class pokeCog:
         else:
             if msg.content.lower() == "gym":
                 stoptype = "gym"
-                print("made it to gym")
             elif msg.content.lower() == "pokestop" or msg.content.lower() == "stop":
                 stoptype = "pokestop"
-                print("made it to stop")
         if stoptype != "wew":
-            print("do the rest of the program")
-        else:
-            print("timeout i think?")
-
-
-
-        # stoptextlist = [[":rotating_light: | Please enter the name of the pokestop.", "name", ""],
-        #                 [":rotating_light: | Please enter the url of the screenshot of the pokestop.", "screenshoturl", ""],
-        #                 [":rotating_light: | Please enter the url of the map location of the pokestop.", "mapurl", ""],
-        #                 [":rotating_light: | Please enter the url of the photo of the pokestop.", "imageurl", ""],
-        #                 [":rotating_light: | Please enter the map coordanites of the pokestop.", "coord", ""]]
+            stoptextlist = [[":rotating_light: | Please enter the name of the "+stoptype+".", "name", "", "pokestop name"],
+                            [":rotating_light: | Please enter the url of the screenshot of the "+stoptype+".", "screenshoturl", "", "screenshot url"],
+                            [":rotating_light: | Please enter the url of the map location of the "+stoptype+".", "mapurl", "", "map location url"],
+                            [":rotating_light: | Please enter the url of the photo of the "+stoptype+".", "imageurl", "", "photo url"],
+                            [":rotating_light: | Please enter the map coordanites of the "+stoptype+".", "coord", "", "map coordinates"]]
+            for option in stoptextlist:
+                await ctx.channel.send(option[0])
+                def check(msg):
+                    return ctx.channel.id == msg.channel.id and msg.author.id == ctx.author.id
+                try:
+                    msg = await self.bot.wait_for('message', check=check, timeout=60.0)
+                except asyncio.TimeoutError:
+                    timeout = True
+                    await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
+                else:
+                    option[2] = msg.content
+                    await ctx.channel.send(":white_check_mark: | **"+option[3]+"** recorded.")
+            if not timeout:
+                connection = await self.bot.db.acquire()
+                async with connection.transaction():
+                    query = "INSERT INTO Pokestops (name, screenshoturl, mapurl, imageurl, coord, type) VALUES($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING"
+                    await self.bot.db.execute(query, stoptextlist[0][2], stoptextlist[1][2], stoptextlist[2][2], stoptextlist[3][2], stoptextlist[4][2], stoptype)
+                await self.bot.db.release(connection)
+                await ctx.channel.send(":white_check_mark: | **"+stoptype+"** added!")
 
 
 def setup(bot):
