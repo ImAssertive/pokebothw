@@ -49,7 +49,6 @@ class pokeCog:
                     await ctx.channel.send(":no_entry: | **" + ctx.author.display_name + "** The command window has closed due to inactivity. Please use the addstop command again to restart the proccess.")
                 else:
                     option[2] = msg.content
-                    await ctx.channel.send(":white_check_mark: | **"+option[3]+"** recorded.")
             if not timeout:
                 embed = discord.Embed(description="please type confirm to confirm adding to database or cancel to discard", colour=self.bot.getcolour())
                 embed.set_author(icon_url=ctx.bot.user.avatar_url, name="Here is the information for "+stoptype+": '"+stoptextlist[0][2]+"'.")
@@ -60,8 +59,7 @@ class pokeCog:
                 embed.add_field(name=stoptype+" map coordanites", value=stoptextlist[4][2], inline=False)
                 embed.set_footer(text="bot made by Zootopia#0001")
                 await ctx.channel.send(embed=embed)
-                await
-                ctx.channel.send(":rotating_light: | Please enter the type of the stop.")
+                await ctx.channel.send(":rotating_light: | Please enter the type of the stop.")
 
                 def check(msg):
                     options = ["cancel", "confirm"]
