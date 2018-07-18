@@ -10,7 +10,7 @@ class pokeCog:
         query = "SELECT * FROM Pokestops WHERE name = $1"
         result = await ctx.bot.db.fetchrow(query, stopname.lower())
         if not result:
-            await ctx.channel.send(":no_entry: | No Pokestop with name:** "+stopname+"** found.")
+            await ctx.channel.send(":no_entry: | No Pokestop with name:** "+stopname.lower()+"** found.")
         else:
             embed = discord.Embed(title="Menu Loading...", description="Please stand by.", colour=self.bot.getcolour())
             menu = await ctx.channel.send(embed = embed)
@@ -20,6 +20,8 @@ class pokeCog:
             await self.infoMainMenu(ctx, menu, result)
 
     async def infoMainMenu(self, ctx, menu, result):
+            print(result)
+            print(result["name"])
             embed = discord.Embed(description="Use the reactions to navigate the menu.", colour=self.bot.getcolour())
             embed.add_field(name=result["type"]+" name:", value=result["name"], inline=False)
             embed.add_field(name=result["type"]+" notes:", value=result["notes"], inline=False)
