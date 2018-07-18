@@ -51,7 +51,7 @@ class pokeCog:
                     option[2] = msg.content
                     await ctx.channel.send(":white_check_mark: | **"+option[3]+"** recorded.")
             if not timeout:
-                embed = discord.Embed(title='Here is the information for '+stoptype+' '+' '+stoptextlist[0][2]+'.')
+                embed = discord.Embed(title='Here is the information for '+stoptype+' '+' '+stoptextlist[0][2]+'.', colour=self.bot.getcolour())
                 embed.add_field(name=stoptype+" name:", value=stoptextlist[0][2], inline=False)
                 embed.add_field(name=stoptype+" screenshot url:", value=stoplisttext[1][2], inline=False)
                 embed.add_field(name=stoptype+" map location url:", value=stoplisttext[2][2], inline=False)
